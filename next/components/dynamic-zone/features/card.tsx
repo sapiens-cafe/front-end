@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import React from "react";
+import { cn } from '@/lib/utils';
+import React from 'react';
 
 export const Card = ({
   className,
@@ -11,7 +11,7 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "p-8 rounded-3xl border border-[rgba(255,255,255,0.10)] bg-[rgba(40,40,40,0.30)] shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset] group",
+        'p-8 rounded-3xl border border-[rgba(255,255,255,0.10)] bg-[#3A2416] shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset] group',
         className
       )}
     >
@@ -27,11 +27,7 @@ export const CardTitle = ({
   children: React.ReactNode;
   className?: string;
 }) => {
-  return (
-    <h3 className={cn("text-lg font-semibold text-white py-2", className)}>
-      {children}
-    </h3>
-  );
+  return <h3 className={cn('text-lg font-semibold text-white py-2', className)}>{children}</h3>;
 };
 
 export const CardDescription = ({
@@ -42,11 +38,7 @@ export const CardDescription = ({
   className?: string;
 }) => {
   return (
-    <p
-      className={cn("text-sm font-normal text-neutral-400 max-w-sm", className)}
-    >
-      {children}
-    </p>
+    <p className={cn('text-sm font-normal text-neutral-400 max-w-sm', className)}>{children}</p>
   );
 };
 
@@ -62,10 +54,10 @@ export const CardSkeletonContainer = ({
   return (
     <div
       className={cn(
-        "h-[20rem] rounded-xl z-40",
+        'h-[20rem] rounded-xl z-40',
         className,
         showGradient &&
-          " bg-[rgba(40,40,40,0.30)] [mask-image:radial-gradient(50%_50%_at_50%_50%,white_0%,transparent_100%)]"
+          ' bg-[rgba(40,40,40,0.30)] [mask-image:radial-gradient(50%_50%_at_50%_50%,white_0%,transparent_100%)]'
       )}
     >
       {children}

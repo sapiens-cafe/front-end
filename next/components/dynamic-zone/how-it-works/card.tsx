@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { MouseEvent as ReactMouseEvent, useRef } from "react";
+import React, { MouseEvent as ReactMouseEvent, useRef } from 'react';
 import {
   motion,
   useMotionValue,
@@ -9,9 +9,9 @@ import {
   useTransform,
   useMotionValueEvent,
   useSpring,
-} from "framer-motion";
-import { CanvasRevealEffect } from "../../ui/canvas-reveal-effect";
-import Beam from "../../beam";
+} from 'framer-motion';
+import { CanvasRevealEffect } from '../../ui/canvas-reveal-effect';
+import Beam from '../../beam';
 
 export const Card = ({
   title,
@@ -25,11 +25,7 @@ export const Card = ({
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  function handleMouseMove({
-    currentTarget,
-    clientX,
-    clientY,
-  }: ReactMouseEvent<HTMLDivElement>) {
+  function handleMouseMove({ currentTarget, clientX, clientY }: ReactMouseEvent<HTMLDivElement>) {
     let { left, top } = currentTarget.getBoundingClientRect();
 
     mouseX.set(clientX - left);
@@ -40,7 +36,7 @@ export const Card = ({
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["end end", "start start"],
+    offset: ['end end', 'start start'],
   });
 
   const width = useSpring(useTransform(scrollYProgress, [0, 0.2], [0, 300]), {
@@ -48,22 +44,18 @@ export const Card = ({
     damping: 90,
   });
 
-  useMotionValueEvent(width, "change", (latest) => {
-  });
+  useMotionValueEvent(width, 'change', (latest) => {});
   return (
-    <div
-      ref={ref}
-      className="grid grid-cols-1 md:grid-cols-4 max-w-4xl mx-auto py-20"
-    >
-      <p className="text-9xl font-bold text-neutral-900 mt-8">{"0" + index}</p>
+    <div ref={ref} className="grid grid-cols-1 md:grid-cols-4 max-w-4xl mx-auto py-20">
+      <p className="text-9xl font-bold text-[#714232] mt-8">{'0' + index}</p>
       <motion.div
-        className="h-px w-full hidden md:block bg-gradient-to-r from-neutral-800 to-neutral-600 rounded-full mt-16 relative overflow-hidden"
+        className="h-px w-full hidden md:block bg-gradient-to-r from-[#714232] to-[#A26043] rounded-full mt-16 relative overflow-hidden"
         style={{ width }}
       >
         <Beam className="top-0" />
       </motion.div>
       <div
-        className="group p-8 rounded-md border border-neutral-800 bg-neutral-950  relative z-40 col-span-2"
+        className="group p-8 rounded-md border border-[#A26043] bg-[#714232]  relative z-40 col-span-2"
         onMouseMove={handleMouseMove}
       >
         <motion.div
@@ -90,7 +82,7 @@ export const Card = ({
         </motion.div>
 
         <p className="text-xl font-bold relative z-20 mt-2">{title}</p>
-        <p className="text-neutral-400 mt-4 relative z-20">{description}</p>
+        <p className="text-neutral-200 mt-4 relative z-20">{description}</p>
       </div>
     </div>
   );

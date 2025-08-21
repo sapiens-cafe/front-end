@@ -6,18 +6,13 @@
 }
 
 .meteor::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   width: var(--meteor-width, 50px);
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    var(--cyan-500),
-    var(--blue-500),
-    transparent
-  );
+  background: linear-gradient(90deg, white, black, transparent);
 }
 
 @keyframes meteor {

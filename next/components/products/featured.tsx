@@ -1,18 +1,18 @@
-import React from "react";
-import Image from "next/image";
-import { formatNumber } from "@/lib/utils";
-import { Link } from "next-view-transitions";
-import { Product } from "@/types/types";
-import { strapiImage } from "@/lib/strapi/strapiImage";
+import React from 'react';
+import Image from 'next/image';
+import { formatNumber } from '@/lib/utils';
+import { Link } from 'next-view-transitions';
+import { Product } from '@/types/types';
+import { strapiImage } from '@/lib/strapi/strapiImage';
 
-export const Featured = ({ products, locale }: { products: Product[], locale: string }) => {
+export const Featured = ({ products, locale }: { products: Product[]; locale: string }) => {
   return (
     <div className="py-20">
       <h2 className="text-2xl md:text-4xl font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 via-white to-white mb-2">
-        Featured
+        Événements à la une
       </h2>
       <p className="text-neutral-500 text-lg mt-4 mb-10">
-        Pick from our most popular collection
+        Choisissez parmi nos événements à venir les plus passionnants
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3  gap-10">
         <div className="md:col-span-2">
@@ -28,7 +28,7 @@ export const Featured = ({ products, locale }: { products: Product[], locale: st
   );
 };
 
-const FeaturedItem = ({ product, locale }: { product: Product, locale:string }) => {
+const FeaturedItem = ({ product, locale }: { product: Product; locale: string }) => {
   return (
     <Link
       href={`/${locale}/products/${product.slug}` as never}

@@ -10,15 +10,15 @@ export async function generateMetadata({
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
   const pageData = await fetchContentType(
-    "pages",
+    'pages',
     {
       filters: {
         slug: params.slug,
         locale: params.locale,
       },
-      populate: "seo.metaImage",
+      populate: 'seo.metaImage',
     },
-    true,
+    true
   );
 
   const seo = pageData?.seo;
@@ -26,16 +26,16 @@ export async function generateMetadata({
   return metadata;
 }
 
-export default async function Page({ params }: { params: { locale: string, slug: string } }) {
+export default async function Page({ params }: { params: { locale: string; slug: string } }) {
   const pageData = await fetchContentType(
-    "pages",
+    'pages',
     {
       filters: {
         slug: params.slug,
         locale: params.locale,
       },
     },
-    true,
+    true
   );
 
   const localizedSlugs = pageData.localizations?.reduce(
@@ -51,6 +51,5 @@ export default async function Page({ params }: { params: { locale: string, slug:
       <ClientSlugHandler localizedSlugs={localizedSlugs} />
       <PageContent pageData={pageData} />
     </>
-
   );
 }

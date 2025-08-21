@@ -10,15 +10,14 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-
   const pageData = await fetchContentType(
     'pages',
     {
       filters: {
-        slug: "homepage",
+        slug: 'homepage',
         locale: params.locale,
       },
-      populate: "seo.metaImage",
+      populate: 'seo.metaImage',
     },
     true
   );
@@ -29,12 +28,11 @@ export async function generateMetadata({
 }
 
 export default async function HomePage({ params }: { params: { locale: string } }) {
-
   const pageData = await fetchContentType(
     'pages',
     {
       filters: {
-        slug: "homepage",
+        slug: 'homepage',
         locale: params.locale,
       },
     },
@@ -43,14 +41,16 @@ export default async function HomePage({ params }: { params: { locale: string } 
 
   const localizedSlugs = pageData.localizations?.reduce(
     (acc: Record<string, string>, localization: any) => {
-      acc[localization.locale] = "";
+      acc[localization.locale] = '';
       return acc;
     },
-    { [params.locale]: "" }
+    { [params.locale]: '' }
   );
 
-  return <>
-    <ClientSlugHandler localizedSlugs={localizedSlugs} />
-    <PageContent pageData={pageData} />
-  </>;
+  return (
+    <>
+      <ClientSlugHandler localizedSlugs={localizedSlugs} />
+      <PageContent pageData={pageData} />
+    </>
+  );
 }
