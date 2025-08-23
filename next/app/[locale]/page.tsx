@@ -1,5 +1,7 @@
-import { redirect } from 'next/navigation';
-
-export default function Home() {
-  redirect('/fr'); // or whichever default locale you want
+export default function LocalHome({ params }: { params: { local: string } }) {
+  return (
+    <main>
+      <h1>Welcome to locale: {params.local}</h1>
+    </main>
+  );
 }
