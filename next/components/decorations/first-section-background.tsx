@@ -127,6 +127,7 @@ const StarBackground: React.FC<StarBackgroundProps> = ({
       }}
       width={500}
       height={200}
+      unoptimized={true}
       src={strapiImage('/uploads/front_door_9bf966fc94.jpg')}
       alt="Description"
       className={cn('h-full w-full absolute inset-0', className)}

@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import { Link } from "next-view-transitions";
-import { BlurImage } from "./blur-image";
+import { Link } from 'next-view-transitions';
+import { BlurImage } from './blur-image';
 
-import { strapiImage } from "@/lib/strapi/strapiImage";
-import { Image } from "@/types/types";
+import { strapiImage } from '@/lib/strapi/strapiImage';
+import { Image } from '@/types/types';
 
-export const Logo = ({ image, locale }: { image?: Image, locale?: string }) => {
+export const Logo = ({ image, locale }: { image?: Image; locale?: string }) => {
   if (image) {
     return (
       <Link
@@ -15,6 +15,7 @@ export const Logo = ({ image, locale }: { image?: Image, locale?: string }) => {
       >
         <BlurImage
           src={strapiImage(image?.url)}
+          unoptimized={true}
           alt={image.alternativeText}
           width={200}
           height={200}
