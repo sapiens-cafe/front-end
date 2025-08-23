@@ -63,6 +63,9 @@
     "featured": {
       "type": "boolean",
       "default": false
+    },
+    "datetime": {
+      "type": "datetime"
     }
   }
 }
