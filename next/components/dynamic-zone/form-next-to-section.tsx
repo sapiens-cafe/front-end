@@ -1,41 +1,31 @@
-"use client";
+'use client';
 
-import StarBackground from "@/components/decorations/star-background";
-import ShootingStars from "@/components/decorations/shooting-star";
-import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
+import StarBackground from '@/components/decorations/star-background';
+import ShootingStars from '@/components/decorations/shooting-star';
+import { AnimatedTooltip } from '@/components/ui/animated-tooltip';
 
-import Link from "next/link";
-import {
-  IconBrandGithub,
-  IconBrandLinkedin,
-  IconBrandX,
-} from "@tabler/icons-react";
+import Link from 'next/link';
+import { IconBrandInstagram } from '@tabler/icons-react';
 
-import { Button } from "../elements/button";
+import { Button } from '../elements/button';
+import { sendEmail } from '@/app/api/send/route';
 
-export function FormNextToSection({ heading, sub_heading, form, section, social_media_icon_links }: { heading: string, sub_heading: string, form: any, section: any, social_media_icon_links: any }) {
-
+export function FormNextToSection({
+  heading,
+  sub_heading,
+  form,
+  section,
+}: {
+  heading: string;
+  sub_heading: string;
+  form: any;
+  section: any;
+}) {
   const socials = [
     {
-      title: "twitter",
-      href: "https://twitter.com/strapijs",
-      icon: (
-        <IconBrandX className="h-5 w-5 text-muted  hover:text-neutral-100" />
-      ),
-    },
-    {
-      title: "github",
-      href: "https://github.com/strapi",
-      icon: (
-        <IconBrandGithub className="h-5 w-5 text-muted  hover:text-neutral-100" />
-      ),
-    },
-    {
-      title: "linkedin",
-      href: "https://linkedin.com/strapi",
-      icon: (
-        <IconBrandLinkedin className="h-5 w-5 text-muted  hover:text-neutral-100" />
-      ),
+      title: 'instagram',
+      href: 'https://www.instagram.com/sapiens.cafe.paris?igsh=N29jY3dkb3Q5OGFos',
+      icon: <IconBrandInstagram className="h-5 w-5 text-muted  hover:text-neutral-100" />,
     },
   ];
 
@@ -47,59 +37,68 @@ export function FormNextToSection({ heading, sub_heading, form, section, social_
             <h1 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-white">
               {heading}
             </h1>
-            <p className="mt-4 text-muted   text-sm max-w-sm">
-              {sub_heading}
-            </p>
+            <p className="mt-4 text-muted   text-sm max-w-sm">{sub_heading}</p>
           </div>
 
           <div className="py-10">
             <div>
               <form
                 className="space-y-4"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  if (form) {
+                    const data = form.inputs.reduce((acc: any, input: any) => {
+                      acc[input.name] = input.value;
+                      return acc;
+                    }, {});
+                    await sendEmail(data);
+                  }
+                }}
               >
-                {form && form?.inputs?.map((input: any) => (
-                  <>
-                    {input.type !== 'submit' && (
-                      <label
-                        htmlFor="name"
-                        className="block text-sm font-medium leading-6 text-neutral-400 "
-                      >
-                        {input.name}
-                      </label>
-                    )}
+                {form &&
+                  form?.inputs?.map((input: any) => (
+                    <>
+                      {input.type !== 'submit' && (
+                        <label
+                          htmlFor="name"
+                          className="block text-sm font-medium leading-6 text-neutral-400 "
+                        >
+                          {input.name}
+                        </label>
+                      )}
 
-                    <div className="mt-2">
-                      {input.type === 'textarea' ? (
-                        <textarea
-                          rows={5}
-                          id="message"
-                          placeholder={input.placeholder}
-                          className="block w-full bg-neutral-900  px-4 rounded-md border-0 py-1.5  shadow-aceternity text-neutral-100 placeholder:text-gray-400 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6 "
-                        />
-                      ) : input.type === 'submit' ? (
-                        <div>
-                          <Button className="w-full mt-6">{input.name}</Button>
-                        </div>
-                      ) :
-                        <input
-                          id="name"
-                          type={input.type}
-                          placeholder={input.placeholder}
-                          className="block w-full bg-neutral-900 px-4 rounded-md border-0 py-1.5  shadow-aceternity text-neutral-100 placeholder:text-gray-400 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6 "
-                        />
-                      }
-                    </div>
-                  </>
-                ))}
+                      <div className="mt-2">
+                        {input.type === 'textarea' ? (
+                          <textarea
+                            rows={5}
+                            id="message"
+                            placeholder={input.placeholder}
+                            className="block w-full bg-neutral-900  px-4 rounded-md border-0 py-1.5  shadow-aceternity text-neutral-100 placeholder:text-gray-400 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6 "
+                          />
+                        ) : input.type === 'submit' ? (
+                          <div>
+                            <Button className="w-full mt-6">{input.name}</Button>
+                          </div>
+                        ) : (
+                          <input
+                            id="name"
+                            type={input.type}
+                            placeholder={input.placeholder}
+                            className="block w-full bg-neutral-900 px-4 rounded-md border-0 py-1.5  shadow-aceternity text-neutral-100 placeholder:text-gray-400 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6 "
+                          />
+                        )}
+                      </div>
+                    </>
+                  ))}
               </form>
             </div>
           </div>
           <div className="flex items-center justify-center space-x-4 py-4">
             {socials.map((social) => (
-                <Link href={social.href} target="_blank" key={social.title}>
-                  {social.icon}
-                </Link>
-              ))}
+              <Link href={social.href} target="_blank" key={social.title}>
+                {social.icon}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
@@ -110,23 +109,14 @@ export function FormNextToSection({ heading, sub_heading, form, section, social_
           <div className="flex flex-row items-center justify-center mb-10 w-full">
             <AnimatedTooltip items={section.users} />
           </div>
-          <p
-            className={
-              "font-semibold text-xl text-center  text-muted text-balance"
-            }
-          >
+          <p className={'font-semibold text-xl text-center  text-muted text-balance'}>
             {section.heading}
           </p>
-          <p
-            className={
-              "font-normal text-base text-center text-neutral-500  mt-8 text-balance"
-            }
-          >
+          <p className={'font-normal text-base text-center text-neutral-500  mt-8 text-balance'}>
             {section.sub_heading}
           </p>
         </div>
       </div>
     </div>
-
   );
 }
