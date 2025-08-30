@@ -70,6 +70,7 @@ export const Features = ({
                 }}
                 width={400}
                 height={300}
+                unoptimized={true}
                 src={strapiImage('/uploads/menu_drink_be72e65e69.png')}
                 alt="Description"
               />
