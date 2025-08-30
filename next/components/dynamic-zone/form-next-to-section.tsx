@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { IconBrandInstagram } from '@tabler/icons-react';
 
 import { Button } from '../elements/button';
-import { sendEmail } from '@/app/api/send/route';
+import { POST } from '@/app/api/send/route';
 
 export function FormNextToSection({
   heading,
@@ -51,7 +51,7 @@ export function FormNextToSection({
                       acc[input.name] = input.value;
                       return acc;
                     }, {});
-                    await sendEmail(data);
+                    await POST(data);
                   }
                 }}
               >

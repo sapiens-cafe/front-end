@@ -20,7 +20,6 @@ export const Logo = ({ image, locale }: { image?: Image; locale?: string }) => {
           width={200}
           height={200}
           className="h-10 w-10 rounded-xl mr-2"
-          unoptimized={true}
         />
 
         <span className="text-white font-bold">Sapiens</span>
