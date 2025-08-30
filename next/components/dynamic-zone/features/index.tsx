@@ -90,6 +90,7 @@ export const Features = ({
                 width={500}
                 height={200}
                 src={strapiImage('/uploads/indoor_no_text_7dd901a4d5.jpg')}
+                unoptimized={true}
                 alt="Description"
               />
             </Card>

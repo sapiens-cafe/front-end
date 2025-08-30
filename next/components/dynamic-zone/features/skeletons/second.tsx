@@ -40,6 +40,7 @@ export const SkeletonTwo = () => {
         height={300}
         src={strapiImage('/uploads/menu_food_d283bf833f.png')}
         alt="Description"
+        unoptimized={true}
       />
       <Cursor
         className="top-60 left-12 group-hover:left-32 group-hover:top-44"

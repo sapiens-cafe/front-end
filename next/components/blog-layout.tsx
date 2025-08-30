@@ -1,11 +1,11 @@
-import { IconArrowLeft } from "@tabler/icons-react";
-import { Container } from "./container";
-import Image from "next/image";
-import { Link } from "next-view-transitions";
-import { format } from "date-fns";
-import { strapiImage } from "@/lib/strapi/strapiImage";
-import DynamicZoneManager from "./dynamic-zone/manager";
-import { Article } from "@/types/types";
+import { IconArrowLeft } from '@tabler/icons-react';
+import { Container } from './container';
+import Image from 'next/image';
+import { Link } from 'next-view-transitions';
+import { format } from 'date-fns';
+import { strapiImage } from '@/lib/strapi/strapiImage';
+import DynamicZoneManager from './dynamic-zone/manager';
+import { Article } from '@/types/types';
 
 export async function BlogLayout({
   article,
@@ -16,7 +16,6 @@ export async function BlogLayout({
   locale: string;
   children: React.ReactNode;
 }) {
-
   return (
     <Container className="mt-16 lg:mt-32">
       <div className="flex justify-between items-center px-2 py-8">
@@ -29,6 +28,7 @@ export async function BlogLayout({
         {article.image ? (
           <Image
             src={strapiImage(article.image.url)}
+            unoptimized={true}
             height="800"
             width="800"
             className="h-40 md:h-96 w-full aspect-square object-cover rounded-3xl [mask-image:radial-gradient(circle,white,transparent)]"
@@ -58,9 +58,7 @@ export async function BlogLayout({
                 {article.title}
               </h1>
             </header>
-            <div className="mt-8 prose prose-sm prose-invert">
-              {children}
-            </div>
+            <div className="mt-8 prose prose-sm prose-invert">{children}</div>
             <div className="flex space-x-2 items-center pt-12 border-t border-neutral-800 mt-12">
               <div className="flex space-x-2 items-center ">
                 {/* <Image
@@ -75,19 +73,18 @@ export async function BlogLayout({
                 </p> */}
               </div>
               <div className="h-5 rounded-lg w-0.5 bg-neutral-700" />
-              <time
-                dateTime={article.publishedAt}
-                className="flex items-center text-base "
-              >
+              <time dateTime={article.publishedAt} className="flex items-center text-base ">
                 <span className="text-muted text-sm">
-                  {format(new Date(article.publishedAt), "MMMM dd, yyyy")}
+                  {format(new Date(article.publishedAt), 'MMMM dd, yyyy')}
                 </span>
               </time>
             </div>
           </article>
         </div>
       </div>
-      {article?.dynamic_zone && (<DynamicZoneManager dynamicZone={article?.dynamic_zone} locale={locale} />)}
+      {article?.dynamic_zone && (
+        <DynamicZoneManager dynamicZone={article?.dynamic_zone} locale={locale} />
+      )}
     </Container>
   );
 }

@@ -47,6 +47,7 @@ const FeaturedItem = ({ product, locale }: { product: Product; locale: string })
         width={1000}
         height={1000}
         className="h-full w-full object-cover group-hover:scale-105 transition duration-200"
+        unoptimized={true}
       />
     </Link>
   );
