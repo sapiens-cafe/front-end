@@ -15,5 +15,5 @@ export function generateMetadataObject(seo: any) {
       description: seo?.twitterDescription || seo?.metaDescription || 'Default Twitter Description',
       images: seo?.twitterImage ? [{ url: seo.twitterImage }] : [],
     },
-  }
+  };
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Product } from '@/types/types';
 import Image from 'next/image';
-import { formatNumber, truncate } from '@/lib/utils';
+import { truncate } from '@/lib/utils';
 import { Link } from 'next-view-transitions';
 import { strapiImage } from '@/lib/strapi/strapiImage';
 import dayjs from 'dayjs';

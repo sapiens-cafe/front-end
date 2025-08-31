@@ -64,15 +64,21 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
       <div className="flex flex-row gap-2 items-center">
         <Logo locale={locale} image={logo?.image} />
         <div className="flex items-center gap-1.5">
-          {leftNavbarItems.map((item) => item.text === "Blog" ?  <div className='text-gray-400'>Blog</div>: (
-            <NavbarItem
-              href={`/${locale}${item.URL}` as never}
-              key={item.text}
-              target={item.target}
-            >
-              {item.text}
-            </NavbarItem>
-          ) )}
+          {leftNavbarItems.map((item, index) =>
+            item.text === 'Blog' ? (
+              <div key={index} className="text-gray-400">
+                Blog
+              </div>
+            ) : (
+              <NavbarItem
+                href={`/${locale}${item.URL}` as never}
+                key={item.text}
+                target={item.target}
+              >
+                {item.text}
+              </NavbarItem>
+            )
+          )}
         </div>
       </div>
       <div className="flex space-x-2 items-center">
