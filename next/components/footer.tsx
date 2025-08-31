@@ -54,7 +54,7 @@ const LinkSection = ({
   locale: string;
 }) => (
   <div className="flex justify-center space-y-4 flex-col mt-4">
-    {links.map((link) => (
+    {links?.map((link) => (
       <Link
         key={link.text}
         className="transition-colors hover:text-neutral-400 text-muted text-xs sm:text-sm"

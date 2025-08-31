@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { IconBrandInstagram } from '@tabler/icons-react';
 
 import { Button } from '../elements/button';
-import { POST } from '@/app/api/send/route';
+import { useState } from 'react';
 
 export function FormNextToSection({
   heading,
@@ -29,6 +29,24 @@ export function FormNextToSection({
     },
   ];
 
+  const [values, setValues] = useState(
+    form.inputs.reduce((acc: any, input: any) => {
+      acc[input.name] = '';
+      return acc;
+    }, {})
+  );
+
+  const handleChange = (name: string, value: string) => {
+    setValues((prev: any) => ({ ...prev, [name]: value }));
+  };
+
+  const postEmail = async (data: any) =>
+    await fetch('/api/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ html: data }),
+    });
+
   return (
     <div className="w-full min-h-screen grid grid-cols-1 md:grid-cols-2 relative overflow-hidden">
       <div className="flex relative z-20 items-center w-full justify-center px-4 py-4 lg:py-40 sm:px-6 lg:flex-none lg:px-20  xl:px-24">
@@ -46,13 +64,13 @@ export function FormNextToSection({
                 className="space-y-4"
                 onSubmit={async (e) => {
                   e.preventDefault();
-                  if (form) {
-                    const data = form.inputs.reduce((acc: any, input: any) => {
-                      acc[input.name] = input.value;
-                      return acc;
-                    }, {});
-                    await POST(data);
-                  }
+                  console.log('Submitting form data:', values);
+                  const data = Object.entries(values)
+                    .filter(([key]) => key.toLowerCase() !== 'submit')
+                    .map(([key, value]) => `<p><strong>${key}:</strong> ${value}</p>`)
+                    .join('');
+                  console.log('Submitting form data:', data);
+                  await postEmail(data);
                 }}
               >
                 {form &&
@@ -73,6 +91,8 @@ export function FormNextToSection({
                             rows={5}
                             id="message"
                             placeholder={input.placeholder}
+                            value={values[input.name] || ''}
+                            onChange={(e) => handleChange(input.name, e.target.value)}
                             className="block w-full bg-neutral-900  px-4 rounded-md border-0 py-1.5  shadow-aceternity text-neutral-100 placeholder:text-gray-400 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6 "
                           />
                         ) : input.type === 'submit' ? (
@@ -82,8 +102,10 @@ export function FormNextToSection({
                         ) : (
                           <input
                             id="name"
+                            value={values[input.name] || ''}
                             type={input.type}
                             placeholder={input.placeholder}
+                            onChange={(e) => handleChange(input.name, e.target.value)}
                             className="block w-full bg-neutral-900 px-4 rounded-md border-0 py-1.5  shadow-aceternity text-neutral-100 placeholder:text-gray-400 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6 "
                           />
                         )}

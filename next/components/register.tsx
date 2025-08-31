@@ -12,7 +12,8 @@ export const Register = () => {
   return (
     <Container className="h-screen max-w-lg mx-auto flex flex-col items-center justify-center">
       <Logo />
-      <h1 className="text-xl md:text-4xl font-bold my-4">
+      <span>Comming soon...</span>
+      {/* <h1 className="text-xl md:text-4xl font-bold my-4">
         Sign up for LaunchPad
       </h1>
 
@@ -43,7 +44,7 @@ export const Register = () => {
           <IconBrandGoogleFilled className="h-4 w-4 text-black" />
           <span className="text-sm">Login with Google</span>
         </button>
-      </div>
+      </div> */}
     </Container>
   );
 };

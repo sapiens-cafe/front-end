@@ -8,6 +8,7 @@ import { cn, formatNumber } from '@/lib/utils';
 import AddToCartModal from '@/components/products/modal';
 import { useCart } from '@/context/cart-context';
 import { strapiImage } from '@/lib/strapi/strapiImage';
+import dayjs from 'dayjs';
 
 export const SingleProduct = ({ product }: { product: Product }) => {
   const [activeThumbnail, setActiveThumbnail] = useState(strapiImage(product.images[0].url));
@@ -66,7 +67,7 @@ export const SingleProduct = ({ product }: { product: Product }) => {
         <div>
           <h2 className="text-2xl font-semibold mb-4">{product.name}</h2>
           <p className=" mb-6 bg-white text-xs px-4 py-1 rounded-full text-black w-fit">
-            ${formatNumber(product.price)}
+            {dayjs(product.datetime).format('DD/MM/YYYY HH:mm')}
           </p>
           <p className="text-base font-normal mb-4 text-neutral-400">{product.description}</p>
 

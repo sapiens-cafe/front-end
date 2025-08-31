@@ -4,10 +4,11 @@ import Image from 'next/image';
 import { formatNumber, truncate } from '@/lib/utils';
 import { Link } from 'next-view-transitions';
 import { strapiImage } from '@/lib/strapi/strapiImage';
+import dayjs from 'dayjs';
 
 export const ProductItems = ({
-  heading = 'Popular',
-  sub_heading = 'Recently rose to popularity',
+  heading = 'Événements phares',
+  sub_heading = 'Découvrez les rendez-vous qui ont captivé notre communauté.',
   products,
   locale,
 }: {
@@ -55,7 +56,7 @@ const ProductItem = ({ product, locale }: { product: Product; locale: string }) 
         <div className="flex justify-between">
           <span className="text-white text-base font-medium">{product.name}</span>
           <span className="bg-white text-black shadow-derek text-xs px-2 py-1 rounded-full">
-            ${formatNumber(product.price)}
+            {dayjs(product.datetime).format('DD/MM/YYYY HH:mm')}
           </span>
         </div>
         <p className="text-neutral-400 text-sm mt-4">{truncate(product.description, 100)}</p>

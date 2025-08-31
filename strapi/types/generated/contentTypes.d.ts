@@ -835,7 +835,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   collectionName: 'products';
   info: {
     description: '';
-    displayName: 'Products';
+    displayName: 'events';
     pluralName: 'products';
     singularName: 'product';
   };

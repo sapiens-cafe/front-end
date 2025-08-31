@@ -18,7 +18,7 @@ export interface Article {
   publishedAt: string;
   locale: string;
   image: Image;
-  categories: Category[]
+  categories: Category[];
 }
 
 export interface Product {
@@ -32,4 +32,5 @@ export interface Product {
   featured?: boolean;
   images: any[];
   categories?: any[];
-};
+  datetime?: string;
+}

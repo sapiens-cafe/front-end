@@ -50,9 +50,9 @@ export default async function LocaleLayout({
       <ViewTransitions>
         <CartProvider>
           <body className={cn(inter.className, 'bg-[#3A2416] antialiased h-full w-full')}>
-            <Navbar data={pageData.navbar} locale={locale} />
+            <Navbar data={pageData?.navbar} locale={locale} />
             {children}
-            <Footer data={pageData.footer} locale={locale} />
+            <Footer data={pageData?.footer} locale={locale} />
           </body>
         </CartProvider>
       </ViewTransitions>
